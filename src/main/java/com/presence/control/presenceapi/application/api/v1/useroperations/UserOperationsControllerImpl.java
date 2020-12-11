@@ -6,12 +6,13 @@ import com.presence.control.presenceapi.data.dto.UserDTO;
 import com.presence.control.presenceapi.domain.services.useroperations.UserOperationsService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class UserOperationsControllerImpl implements  UserOperationsController {
+public class UserOperationsControllerImpl implements UserOperationsController {
 
     private final UserOperationsService userOperationsService;
 
@@ -25,7 +26,7 @@ public class UserOperationsControllerImpl implements  UserOperationsController {
         Response<UserDTO> userResponse = new Response<>();
         userResponse.setPayload(createdUser);
 
-        return ResponseEntity.ok(userResponse);
+        return new ResponseEntity<>(userResponse, HttpStatus.CREATED);
     }
 
 
