@@ -1,4 +1,4 @@
-package com.presence.control.presenceapi.application.response;
+package com.presence.control.presenceapi.data.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,12 +9,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @RequiredArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class Response {
+public class LocalDTO {
 
     @JsonProperty
-    private String message;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Long id;
 
-    @JsonProperty
-    private Object responseObject;
+    private Long ownerId;
+
+    private String localName;
+
 }

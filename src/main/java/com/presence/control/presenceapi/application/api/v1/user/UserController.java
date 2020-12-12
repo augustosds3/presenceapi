@@ -1,4 +1,4 @@
-package com.presence.control.presenceapi.application.api.v1.useroperations;
+package com.presence.control.presenceapi.application.api.v1.user;
 
 import com.presence.control.presenceapi.application.response.Response;
 import com.presence.control.presenceapi.data.dto.UserDTO;
@@ -13,17 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
-@RequestMapping(path = "/api/useroperations/v1/")
+@RequestMapping(path = "/api/user/v1/")
 @Api(value = "Presence Control User Operations API")
-@ApiResponses(value = {
-        @ApiResponse(code = 201, message = "User created"),
-        @ApiResponse(code = 409, message = "User already exists with specified email"),
-        @ApiResponse(code = 400, message = "Wrong parameters in the request message")
-})
-public interface UserOperationsController {
+public interface UserController {
 
-    @ApiOperation("Create a new User")
+
     @PostMapping(path = "/signup", consumes = "application/json", produces = "application/json")
+    @ApiOperation(value = "Create a new User")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "User created"),
+            @ApiResponse(code = 409, message = "User already exists with specified email"),
+            @ApiResponse(code = 400, message = "Wrong parameters in the request message")
+    })
     ResponseEntity<Response> signUp(@Valid @RequestBody UserDTO user);
 
 }

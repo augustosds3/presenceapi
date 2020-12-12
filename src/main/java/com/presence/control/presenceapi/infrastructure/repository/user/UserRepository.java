@@ -1,4 +1,4 @@
-package com.presence.control.presenceapi.infrastructure.repository.useroperations;
+package com.presence.control.presenceapi.infrastructure.repository.user;
 
 import com.presence.control.presenceapi.data.domain.User;
 import org.springframework.data.repository.CrudRepository;

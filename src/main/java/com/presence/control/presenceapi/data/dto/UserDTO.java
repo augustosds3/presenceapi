@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class UserDTO {
 
     @JsonProperty
@@ -18,11 +19,7 @@ public class UserDTO {
     @JsonProperty(required = true)
     @NotNull
     private String fullName;
-    /*
-        @JsonProperty(required = true)
-        @NotNull
-        private String userName;
-    */
+
     @JsonProperty(required = true)
     @NotNull
     private String email;

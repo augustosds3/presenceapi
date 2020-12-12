@@ -1,16 +1,16 @@
-package com.presence.control.presenceapi.domain.services.useroperations;
+package com.presence.control.presenceapi.domain.services.user;
 
 import com.presence.control.presenceapi.data.domain.User;
 import com.presence.control.presenceapi.data.dto.UserDTO;
 import com.presence.control.presenceapi.domain.exception.UserExistsException;
-import com.presence.control.presenceapi.infrastructure.repository.useroperations.UserRepository;
+import com.presence.control.presenceapi.infrastructure.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserOperationsServiceImpl implements UserOperationsService {
+public class UserServiceImpl implements UserService {
 
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
