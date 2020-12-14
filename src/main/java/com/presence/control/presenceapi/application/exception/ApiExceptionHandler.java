@@ -1,7 +1,8 @@
 package com.presence.control.presenceapi.application.exception;
 
 import com.presence.control.presenceapi.application.response.ErrorResponse;
-import com.presence.control.presenceapi.domain.exception.UserExistsException;
+import com.presence.control.presenceapi.domain.exception.UserAlreadyExistsException;
+import com.presence.control.presenceapi.domain.exception.UserNotFoundException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -49,14 +50,25 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(UserExistsException.class)
-    public ResponseEntity<Object> handleUserExistException(UserExistsException userExistsException){
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<Object> handleUserExistException(UserAlreadyExistsException userAlreadyExistsException){
 
         Map<String, Object> body = new HashMap<>();
 
-        body.put("message", userExistsException.getMessage());
+        body.put("message", userAlreadyExistsException.getMessage());
 
         return new ResponseEntity<>(body, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException userNotFoundException){
+
+        Map<String, Object> body = new HashMap<>();
+
+        body.put("message", userNotFoundException.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.CONFLICT);
+
     }
 
 

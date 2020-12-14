@@ -2,7 +2,7 @@ package com.presence.control.presenceapi.domain.services.user;
 
 import com.presence.control.presenceapi.data.domain.User;
 import com.presence.control.presenceapi.data.dto.UserDTO;
-import com.presence.control.presenceapi.domain.exception.UserExistsException;
+import com.presence.control.presenceapi.domain.exception.UserAlreadyExistsException;
 import com.presence.control.presenceapi.infrastructure.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     public UserDTO registerUser(User user) {
 
         if(emailExists(user)){
-            throw new UserExistsException("An account already exist with email address: " + user.getEmail());
+            throw new UserAlreadyExistsException("An account already exist with email address: " + user.getEmail());
         }
 
         User createdUser = userRepository.save(user);
