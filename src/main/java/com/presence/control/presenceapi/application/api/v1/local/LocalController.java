@@ -2,6 +2,7 @@ package com.presence.control.presenceapi.application.api.v1.local;
 
 import com.presence.control.presenceapi.application.response.Response;
 import com.presence.control.presenceapi.data.dto.LocalDTO;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
 @RequestMapping(path = "/api/local/v1")
+@Api(value = "Presence Control Local Operations API")
 public interface LocalController {
 
     @PostMapping(path = "/createlocal", consumes = "application/json", produces = "application/json")

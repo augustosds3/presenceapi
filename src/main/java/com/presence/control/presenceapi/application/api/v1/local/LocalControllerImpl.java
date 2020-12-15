@@ -22,7 +22,7 @@ public class LocalControllerImpl implements LocalController {
     @Override
     public ResponseEntity<Response> createLocal(@Valid LocalDTO local) {
 
-        LocalDTO createdLocal = localService.createLocal(modelMapper.map(local, Local.class), local.getOwnerId());
+        LocalDTO createdLocal = localService.createLocal(modelMapper.map(local, Local.class), local.getOwnerUserId());
 
         Response localResponse = new Response();
         localResponse.setMessage("Local Created");

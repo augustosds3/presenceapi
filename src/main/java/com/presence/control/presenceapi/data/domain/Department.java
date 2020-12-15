@@ -6,23 +6,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Local extends BaseEntity{
+public class Department extends BaseEntity {
 
-    private String localName;
+    private String departmentName;
+
+    private Long maxPeopleAllowed;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id", referencedColumnName = "id")
+    private Local departmentLocal;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private User ownerUser;
-
-    @OneToMany(mappedBy = "departmentLocal")
-    private List<Department> localDepartments;
-
-
 }

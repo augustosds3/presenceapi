@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class LocalDTO {
+public class DepartmentDTO {
 
     @JsonProperty
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -19,11 +19,19 @@ public class LocalDTO {
 
     @JsonProperty(required = true)
     @NotNull
-    private Long ownerUserId;
+    private String departmentName;
 
     @JsonProperty(required = true)
     @NotNull
-    private String localName;
+    private Integer maxPeopleAllowed;
+
+    @JsonProperty(required = true)
+    @NotNull
+    private Long departmentLocalId;
+
+    @JsonProperty
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Long ownerUserId;
 
 
 }

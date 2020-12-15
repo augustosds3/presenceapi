@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
     private boolean emailExists(User user) {
 
-       return userRepository.findByEmail(user.getEmail()) != null;
+       return userRepository.countByEmail(user.getEmail()) > 0;
 
 
     }

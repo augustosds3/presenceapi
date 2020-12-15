@@ -1,8 +1,7 @@
 package com.presence.control.presenceapi.application.exception;
 
 import com.presence.control.presenceapi.application.response.ErrorResponse;
-import com.presence.control.presenceapi.domain.exception.UserAlreadyExistsException;
-import com.presence.control.presenceapi.domain.exception.UserNotFoundException;
+import com.presence.control.presenceapi.domain.exception.*;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -67,7 +66,40 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
         body.put("message", userNotFoundException.getMessage());
 
-        return new ResponseEntity<>(body, HttpStatus.CONFLICT);
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+
+    }
+
+    @ExceptionHandler(LocalNotFoundException.class)
+    public ResponseEntity<Object> handleLocalNotFoundException(LocalNotFoundException localNotFoundException){
+
+        Map<String, Object> body = new HashMap<>();
+
+        body.put("message", localNotFoundException.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+
+    }
+
+    @ExceptionHandler(LocalAlreadyExistsException.class)
+    public ResponseEntity<Object> handleLocalAlreadyExistsException(LocalAlreadyExistsException localAlreadyExistsException){
+
+        Map<String, Object> body = new HashMap<>();
+
+        body.put("message", localAlreadyExistsException.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+
+    }
+
+    @ExceptionHandler(DepartmentAlreadyExists.class)
+    public ResponseEntity<Object> handleDepartmentAlreadyExists(DepartmentAlreadyExists departmentAlreadyExists){
+
+        Map<String, Object> body = new HashMap<>();
+
+        body.put("message", departmentAlreadyExists.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
 
     }
 

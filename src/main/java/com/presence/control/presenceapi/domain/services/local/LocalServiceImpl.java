@@ -3,6 +3,7 @@ package com.presence.control.presenceapi.domain.services.local;
 import com.presence.control.presenceapi.data.domain.Local;
 import com.presence.control.presenceapi.data.domain.User;
 import com.presence.control.presenceapi.data.dto.LocalDTO;
+import com.presence.control.presenceapi.domain.exception.LocalAlreadyExistsException;
 import com.presence.control.presenceapi.domain.exception.UserNotFoundException;
 import com.presence.control.presenceapi.infrastructure.repository.local.LocalRepository;
 import com.presence.control.presenceapi.infrastructure.repository.user.UserRepository;
@@ -23,6 +24,10 @@ public class LocalServiceImpl implements LocalService {
     @Override
     public LocalDTO createLocal(Local local, Long ownerId) {
 
+        if(localExists(local.getLocalName())){
+            throw new LocalAlreadyExistsException(String.format("Local with name %s already exists.", local.getLocalName()));
+        }
+
         Optional<User> ownerUserOptional = userRepository.findById(ownerId);
 
         local.setOwnerUser(ownerUserOptional.
@@ -31,5 +36,9 @@ public class LocalServiceImpl implements LocalService {
        Local createdLocal = localRepository.save(local);
 
         return modelMapper.map(createdLocal, LocalDTO.class);
+    }
+
+    private boolean localExists(String localName) {
+        return localRepository.countByLocalName(localName) > 0;
     }
 }
