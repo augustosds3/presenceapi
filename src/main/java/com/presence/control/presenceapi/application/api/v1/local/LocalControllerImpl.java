@@ -30,4 +30,15 @@ public class LocalControllerImpl implements LocalController {
 
         return new ResponseEntity<>(localResponse, HttpStatus.CREATED);
     }
+
+    @Override
+    public ResponseEntity<Response> subscribeUser(Long localId, Long userID) {
+
+        String result = localService.subscribeUserToLocal(localId, userID);
+
+        Response localResponse = new Response();
+        localResponse.setMessage(result);
+
+        return new ResponseEntity<>(localResponse, HttpStatus.CREATED);
+    }
 }

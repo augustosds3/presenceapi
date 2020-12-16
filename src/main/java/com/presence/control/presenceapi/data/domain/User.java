@@ -5,10 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -28,4 +27,11 @@ public class User extends BaseEntity {
 
     @OneToMany(mappedBy = "ownerUser", fetch = FetchType.LAZY)
     private List<Department> ownedDepartments;
+
+    @ManyToMany
+    @JoinTable (
+            name = "local_subscription",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "local_id"))
+    Set<Local> subscribedLocals;
 }

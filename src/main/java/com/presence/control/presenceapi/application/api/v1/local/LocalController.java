@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -25,5 +26,14 @@ public interface LocalController {
             @ApiResponse(code = 400, message = "Wrong parameters in the request message")
     })
     ResponseEntity<Response> createLocal(@Valid @RequestBody LocalDTO local);
+
+
+    @PostMapping(path = "/subscribeuser")
+    @ApiOperation(value = "Subscribe a User to a Local")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "User Subscribed"),
+            @ApiResponse(code = 400, message = "Wrong parameters in the request message")
+    })
+    ResponseEntity<Response> subscribeUser(@RequestParam(name = "localId") Long localId, @RequestParam(name = "userId") Long userID);
 
 }

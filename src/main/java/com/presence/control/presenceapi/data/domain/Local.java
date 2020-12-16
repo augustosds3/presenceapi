@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -20,6 +21,9 @@ public class Local extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private User ownerUser;
+
+    @ManyToMany(mappedBy = "subscribedLocals", cascade = CascadeType.ALL)
+    private Set<User> subscribedUsers;
 
     @OneToMany(mappedBy = "departmentLocal")
     private List<Department> localDepartments;
