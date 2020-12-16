@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -40,5 +41,17 @@ public class LocalControllerImpl implements LocalController {
         localResponse.setMessage(result);
 
         return new ResponseEntity<>(localResponse, HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<Response> findAllUserLocals(Long userId) {
+
+        List<LocalDTO> userLocals = localService.findAllUserLocals(userId);
+
+        Response localResponse = new Response();
+        localResponse.setMessage("User Locals found");
+        localResponse.setResponseObject(userLocals);
+
+        return new ResponseEntity<>(localResponse, HttpStatus.OK);
     }
 }

@@ -9,5 +9,5 @@ public interface LocalRepository extends CrudRepository<Local, Long> {
 
     Long countByLocalName(String localName);
 
-    List<Local> findByOwnerUser_Id(Long ownerUserId);
+    List<Local> findAllBySubscribedUsers_Id(Long ownerUserId);
 }

@@ -1,5 +1,6 @@
 package com.presence.control.presenceapi.domain.services.local;
 
+import com.presence.control.presenceapi.commons.helper.ConversionMapper;
 import com.presence.control.presenceapi.data.domain.Local;
 import com.presence.control.presenceapi.data.domain.User;
 import com.presence.control.presenceapi.data.dto.LocalDTO;
@@ -8,7 +9,6 @@ import com.presence.control.presenceapi.domain.exception.UserNotFoundException;
 import com.presence.control.presenceapi.infrastructure.repository.local.LocalRepository;
 import com.presence.control.presenceapi.infrastructure.repository.user.UserRepository;
 import lombok.AllArgsConstructor;
-import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,7 +58,10 @@ public class LocalServiceImpl implements LocalService {
 
     @Override
     public List<LocalDTO> findAllUserLocals(Long userId) {
-        return null;
+
+        List<Local> list = localRepository.findAllBySubscribedUsers_Id(userId);
+
+        return ConversionMapper.mapList(list, LocalDTO.class);
     }
 
     private boolean localExists(String localName) {

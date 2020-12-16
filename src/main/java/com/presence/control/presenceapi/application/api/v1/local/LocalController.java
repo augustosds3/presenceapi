@@ -7,10 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -18,7 +15,7 @@ import javax.validation.Valid;
 @Api(value = "Presence Control Local Operations API")
 public interface LocalController {
 
-    @PostMapping(path = "/createlocal", consumes = "application/json", produces = "application/json")
+    @PostMapping(path = "/create-local", consumes = "application/json", produces = "application/json")
     @ApiOperation(value = "Create a new Local")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Local created"),
@@ -28,12 +25,21 @@ public interface LocalController {
     ResponseEntity<Response> createLocal(@Valid @RequestBody LocalDTO local);
 
 
-    @PostMapping(path = "/subscribeuser")
+    @PostMapping(path = "/subscribe-user")
     @ApiOperation(value = "Subscribe a User to a Local")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "User Subscribed"),
             @ApiResponse(code = 400, message = "Wrong parameters in the request message")
     })
     ResponseEntity<Response> subscribeUser(@RequestParam(name = "localId") Long localId, @RequestParam(name = "userId") Long userID);
+
+
+    @GetMapping(path = "/locals/{userId}")
+    @ApiOperation(value = "Return a List of User subscribed Locals")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "User locals found"),
+            @ApiResponse(code = 400, message = "Wrong parameters in the request message")
+    })
+    ResponseEntity<Response> findAllUserLocals(@PathVariable Long userId);
 
 }
