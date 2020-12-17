@@ -13,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,11 +58,21 @@ public class LocalServiceImpl implements LocalService {
     }
 
     @Override
+    public List<LocalDTO> findAllLocals() {
+
+        List<Local> allLocals = new ArrayList<>();
+
+        localRepository.findAll().forEach(allLocals::add);
+
+        return ConversionMapper.mapList(allLocals, LocalDTO.class);
+    }
+
+    @Override
     public List<LocalDTO> findAllUserLocals(Long userId) {
 
-        List<Local> list = localRepository.findAllBySubscribedUsers_Id(userId);
+        List<Local> userLocals = localRepository.findAllBySubscribedUsers_Id(userId);
 
-        return ConversionMapper.mapList(list, LocalDTO.class);
+        return ConversionMapper.mapList(userLocals, LocalDTO.class);
     }
 
     private boolean localExists(String localName) {

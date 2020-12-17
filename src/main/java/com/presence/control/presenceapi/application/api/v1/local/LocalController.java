@@ -33,11 +33,21 @@ public interface LocalController {
     })
     ResponseEntity<Response> subscribeUser(@RequestParam(name = "localId") Long localId, @RequestParam(name = "userId") Long userID);
 
+    @GetMapping(path = "/locals")
+    @ApiOperation(value = "Return a List of all registered Locals")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Locals found"),
+            @ApiResponse(code = 204, message = "No Locals found"),
+            @ApiResponse(code = 400, message = "Wrong parameters in the request message")
+    })
+    ResponseEntity<Response> findAllLocals();
+
 
     @GetMapping(path = "/locals/{userId}")
     @ApiOperation(value = "Return a List of User subscribed Locals")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "User locals found"),
+            @ApiResponse(code = 204, message = "No User Locals found"),
             @ApiResponse(code = 400, message = "Wrong parameters in the request message")
     })
     ResponseEntity<Response> findAllUserLocals(@PathVariable Long userId);

@@ -22,10 +22,10 @@ public class Local extends BaseEntity{
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private User ownerUser;
 
-    @ManyToMany(mappedBy = "subscribedLocals", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "subscribedLocals")
     private Set<User> subscribedUsers;
 
-    @OneToMany(mappedBy = "departmentLocal")
+    @OneToMany(mappedBy = "departmentLocal", cascade = CascadeType.ALL)
     private List<Department> localDepartments;
 
 

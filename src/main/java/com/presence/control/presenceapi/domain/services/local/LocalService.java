@@ -11,6 +11,8 @@ public interface LocalService {
 
     String subscribeUserToLocal(Long localId, Long userId);
 
+    List<LocalDTO> findAllLocals();
+
     List<LocalDTO> findAllUserLocals(Long userId);
 
 }

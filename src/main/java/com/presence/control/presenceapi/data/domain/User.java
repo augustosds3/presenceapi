@@ -34,4 +34,12 @@ public class User extends BaseEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "local_id"))
     Set<Local> subscribedLocals;
+
+    @ManyToMany
+    @JoinTable(
+            name = "department_subscription",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "local")
+    )
+    Set<Department> subscribedDepartments;
 }

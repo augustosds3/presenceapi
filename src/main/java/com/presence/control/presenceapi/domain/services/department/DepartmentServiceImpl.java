@@ -1,5 +1,6 @@
 package com.presence.control.presenceapi.domain.services.department;
 
+import com.presence.control.presenceapi.commons.helper.ConversionMapper;
 import com.presence.control.presenceapi.data.domain.Department;
 import com.presence.control.presenceapi.data.domain.Local;
 import com.presence.control.presenceapi.data.domain.User;
@@ -14,7 +15,10 @@ import com.presence.control.presenceapi.infrastructure.repository.user.UserRepos
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,6 +50,39 @@ public class DepartmentServiceImpl implements DepartmentService {
         Department createdDepartment = departmentRepository.save(department);
 
         return modelMapper.map(createdDepartment, DepartmentDTO.class);
+    }
+
+    @Override
+    @Transactional
+    public String subscribeUser(Long departmentId, Long userId) {
+
+        Department department = departmentRepository.findById(departmentId).get();
+        User user = userRepository.findById(userId).get();
+
+        user.getSubscribedDepartments().add(department);
+
+        userRepository.save(user);
+
+        return "User subscribed";
+    }
+
+    @Override
+    public List<DepartmentDTO> findAllDepartments() {
+
+        List<Department> allDepartments = new ArrayList<>();
+
+        departmentRepository.findAll().forEach(allDepartments::add);
+
+        return ConversionMapper.mapList(allDepartments, DepartmentDTO.class);
+    }
+
+    @Override
+    public List<DepartmentDTO> findAllUserDepartments(Long userId) {
+
+        List<Department> userDepartments = departmentRepository.findAllBySubscribedUsers_Id(userId);
+
+
+        return ConversionMapper.mapList(userDepartments, DepartmentDTO.class);
     }
 
     private boolean departmentExistsInLocal(String departmentName, Long departmentLocalId) {

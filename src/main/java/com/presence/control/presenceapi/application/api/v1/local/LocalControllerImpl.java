@@ -44,14 +44,36 @@ public class LocalControllerImpl implements LocalController {
     }
 
     @Override
+    public ResponseEntity<Response> findAllLocals() {
+
+        List<LocalDTO> allLocals = localService.findAllLocals();
+        Response localResponse = new Response();
+
+        if(allLocals.size() == 0 ){
+            localResponse.setMessage("No registered Locals were found");
+            return new ResponseEntity<>(localResponse, HttpStatus.NO_CONTENT);
+        }
+
+        localResponse.setMessage("All Locals found");
+        localResponse.setResponseObject(allLocals);
+        return new ResponseEntity<>(localResponse, HttpStatus.OK);
+
+    }
+
+    @Override
     public ResponseEntity<Response> findAllUserLocals(Long userId) {
 
         List<LocalDTO> userLocals = localService.findAllUserLocals(userId);
-
         Response localResponse = new Response();
-        localResponse.setMessage("User Locals found");
-        localResponse.setResponseObject(userLocals);
 
+        if(userLocals.size() == 0){
+            localResponse.setMessage("User not registered in any local");
+            return new ResponseEntity<>(localResponse, HttpStatus.NO_CONTENT);
+        }
+
+        localResponse.setMessage("Locals that user are registered found");
+        localResponse.setResponseObject(userLocals);
         return new ResponseEntity<>(localResponse, HttpStatus.OK);
+
     }
 }
