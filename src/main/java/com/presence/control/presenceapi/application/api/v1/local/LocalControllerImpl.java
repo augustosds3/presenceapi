@@ -17,8 +17,9 @@ import java.util.List;
 @AllArgsConstructor
 public class LocalControllerImpl implements LocalController {
 
-    LocalService localService;
-    ModelMapper modelMapper;
+    private final LocalService localService;
+
+    private final ModelMapper modelMapper;
 
     @Override
     public ResponseEntity<Response> createLocal(@Valid LocalDTO local) {

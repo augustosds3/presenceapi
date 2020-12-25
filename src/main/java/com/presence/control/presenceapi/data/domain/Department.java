@@ -29,4 +29,6 @@ public class Department extends BaseEntity {
 
     @ManyToMany(mappedBy = "subscribedDepartments")
     private Set<User> subscribedUsers;
+
+
 }

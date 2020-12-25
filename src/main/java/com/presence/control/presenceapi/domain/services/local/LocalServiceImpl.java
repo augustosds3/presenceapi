@@ -23,7 +23,7 @@ public class LocalServiceImpl implements LocalService {
 
     UserRepository userRepository;
     LocalRepository localRepository;
-    ModelMapper modelMapper;
+    ConversionMapper conversionMapper;
 
     @Override
     public LocalDTO createLocal(Local local, Long ownerId) {
@@ -39,7 +39,7 @@ public class LocalServiceImpl implements LocalService {
 
        Local createdLocal = localRepository.save(local);
 
-        return modelMapper.map(createdLocal, LocalDTO.class);
+        return conversionMapper.map(createdLocal, LocalDTO.class);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class LocalServiceImpl implements LocalService {
 
         localRepository.findAll().forEach(allLocals::add);
 
-        return ConversionMapper.mapList(allLocals, LocalDTO.class);
+        return conversionMapper.mapList(allLocals, LocalDTO.class);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class LocalServiceImpl implements LocalService {
 
         List<Local> userLocals = localRepository.findAllBySubscribedUsers_Id(userId);
 
-        return ConversionMapper.mapList(userLocals, LocalDTO.class);
+        return conversionMapper.mapList(userLocals, LocalDTO.class);
     }
 
     private boolean localExists(String localName) {

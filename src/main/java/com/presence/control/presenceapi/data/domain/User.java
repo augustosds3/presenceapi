@@ -42,4 +42,7 @@ public class User extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "local")
     )
     Set<Department> subscribedDepartments;
+
+    @OneToMany(mappedBy = "appointmentUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    Set<Appointment> appointmentsMade;
 }

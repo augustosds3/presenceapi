@@ -18,14 +18,14 @@ public class Local extends BaseEntity{
 
     private String localName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private User ownerUser;
 
     @ManyToMany(mappedBy = "subscribedLocals")
     private Set<User> subscribedUsers;
 
-    @OneToMany(mappedBy = "departmentLocal", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "departmentLocal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Department> localDepartments;
 
 

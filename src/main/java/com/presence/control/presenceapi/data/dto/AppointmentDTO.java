@@ -11,24 +11,25 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class DepartmentDTO {
+public class AppointmentDTO {
 
     @JsonProperty
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Long id;
 
     @NotNull
-    private String departmentName;
+    private String appointmentDate;
 
     @NotNull
-    private Integer maxPeopleAllowed;
+    private String appointmentStartTime;
 
     @NotNull
-    private Long departmentLocalId;
+    private String appointmentEndTime;
 
-    @JsonProperty
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Long ownerUserId;
+    @NotNull
+    private Long appointmentUserId;
 
+    @NotNull
+    private Long appointmentDepartmentId;
 
 }

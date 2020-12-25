@@ -6,7 +6,6 @@ import com.presence.control.presenceapi.data.domain.Local;
 import com.presence.control.presenceapi.data.domain.User;
 import com.presence.control.presenceapi.data.dto.DepartmentDTO;
 import com.presence.control.presenceapi.domain.exception.DepartmentAlreadyExists;
-import com.presence.control.presenceapi.domain.exception.LocalAlreadyExistsException;
 import com.presence.control.presenceapi.domain.exception.LocalNotFoundException;
 import com.presence.control.presenceapi.domain.exception.UserNotFoundException;
 import com.presence.control.presenceapi.infrastructure.repository.department.DepartmentRepository;
@@ -28,7 +27,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     UserRepository userRepository;
     LocalRepository localRepository;
     DepartmentRepository departmentRepository;
-    ModelMapper modelMapper;
+    ConversionMapper conversionMapper;
 
     @Override
     public DepartmentDTO createDepartment(Department department, Long departmentLocalId) {
@@ -49,7 +48,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
         Department createdDepartment = departmentRepository.save(department);
 
-        return modelMapper.map(createdDepartment, DepartmentDTO.class);
+        return conversionMapper.map(createdDepartment, DepartmentDTO.class);
     }
 
     @Override
@@ -73,7 +72,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
         departmentRepository.findAll().forEach(allDepartments::add);
 
-        return ConversionMapper.mapList(allDepartments, DepartmentDTO.class);
+        return conversionMapper.mapList(allDepartments, DepartmentDTO.class);
     }
 
     @Override
@@ -81,8 +80,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
         List<Department> userDepartments = departmentRepository.findAllBySubscribedUsers_Id(userId);
 
-
-        return ConversionMapper.mapList(userDepartments, DepartmentDTO.class);
+        return conversionMapper.mapList(userDepartments, DepartmentDTO.class);
     }
 
     private boolean departmentExistsInLocal(String departmentName, Long departmentLocalId) {
