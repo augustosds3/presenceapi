@@ -29,7 +29,4 @@ public class AppointmentDTO {
     @NotNull
     private Long appointmentUserId;
 
-    @NotNull
-    private Long appointmentDepartmentId;
-
 }

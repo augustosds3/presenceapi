@@ -2,16 +2,15 @@ package com.presence.control.presenceapi.domain.services.appointment;
 
 import com.presence.control.presenceapi.commons.helper.ConversionMapper;
 import com.presence.control.presenceapi.data.domain.Appointment;
-import com.presence.control.presenceapi.data.domain.Department;
 import com.presence.control.presenceapi.data.domain.User;
 import com.presence.control.presenceapi.data.dto.AppointmentDTO;
-import com.presence.control.presenceapi.infrastructure.repository.department.DepartmentRepository;
+import com.presence.control.presenceapi.infrastructure.repository.appointment.AppointmentRepository;
 import com.presence.control.presenceapi.infrastructure.repository.user.UserRepository;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,7 +18,7 @@ import java.util.List;
 public class AppointmentServiceImpl implements AppointmentService{
 
     UserRepository userRepository;
-    DepartmentRepository departmentRepository;
+    AppointmentRepository appointmentRepository;
     ConversionMapper conversionMapper;
 
     @Override
@@ -38,4 +37,24 @@ public class AppointmentServiceImpl implements AppointmentService{
 
         return conversionMapper.mapList(appointments, AppointmentDTO.class);
     }
+
+    @Override
+    public List<AppointmentDTO> findAllAppointments() {
+
+        List<Appointment> allAppointments = new ArrayList<>();
+
+        appointmentRepository.findAll().forEach(allAppointments::add);
+
+        return conversionMapper.mapList(allAppointments, AppointmentDTO.class);
+    }
+
+    @Override
+    public List<AppointmentDTO> findAllUserAppointments(Long userId) {
+
+        List<Appointment> userAppointments = appointmentRepository.findAllByAppointmentUser_Id(userId);
+
+        return conversionMapper.mapList(userAppointments, AppointmentDTO.class);
+    }
+
+
 }

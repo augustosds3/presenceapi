@@ -28,8 +28,6 @@ public class AppointmentControllerImpl implements AppointmentController {
     @Override
     public ResponseEntity<Response> registerAppointments(@Valid List<AppointmentDTO> appointments) {
 
-
-
         List<AppointmentDTO> createdAppointments = appointmentService.registerUserAppointments(conversionMapper.mapList(appointments, Appointment.class));
 
         Response appointmentResponse = new Response();
@@ -38,18 +36,32 @@ public class AppointmentControllerImpl implements AppointmentController {
 
         return new ResponseEntity<>(appointmentResponse, HttpStatus.CREATED);
     }
-/*
-    public static void main(String args[]){
 
-        ConversionMapper conversionMapper = new ConversionMapper();
+    @Override
+    public ResponseEntity<Response> findAllAppointments() {
+        List<AppointmentDTO> allAppointments = appointmentService.findAllAppointments();
 
-        AppointmentDTO dto = new AppointmentDTO();
-        dto.setAppointmentDate("20-12-2020");
+        Response appointmentResponse = new Response();
+        appointmentResponse.setMessage("Appointments found");
+        appointmentResponse.setResponseObject(allAppointments);
 
-        Appointment appointment = conversionMapper.map(dto, Appointment.class);
-
-        System.out.println(appointment.getAppointmentDate());
-
+        return new ResponseEntity<>(appointmentResponse, HttpStatus.OK);
     }
-*/
+
+    @Override
+    public ResponseEntity<Response> findAllUserAppointments(Long userId) {
+
+        List<AppointmentDTO> userAppointments = appointmentService.findAllUserAppointments(userId);
+        Response appointmentResponse = new Response();
+
+        if(userAppointments.size() == 0){
+            appointmentResponse.setMessage("No User Appointments found");
+            return new ResponseEntity<>(appointmentResponse, HttpStatus.NO_CONTENT);
+        }
+
+        appointmentResponse.setMessage("Locals that user are registered found");
+        appointmentResponse.setResponseObject(userAppointments);
+        return new ResponseEntity<>(appointmentResponse, HttpStatus.OK);
+    }
+
 }

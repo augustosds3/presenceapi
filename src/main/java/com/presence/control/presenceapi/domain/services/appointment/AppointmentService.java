@@ -9,4 +9,8 @@ public interface AppointmentService {
 
     List<AppointmentDTO> registerUserAppointments(List<Appointment> appointments);
 
+    List<AppointmentDTO> findAllAppointments();
+
+    List<AppointmentDTO> findAllUserAppointments(Long userId);
+
 }
