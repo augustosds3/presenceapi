@@ -1,9 +1,6 @@
 package com.presence.control.presenceapi.data.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -33,7 +30,7 @@ public class User extends BaseEntity {
             name = "local_subscription",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "local_id"))
-    Set<Local> subscribedLocals;
+    private Set<Local> subscribedLocals;
 
     @ManyToMany
     @JoinTable(
@@ -41,8 +38,8 @@ public class User extends BaseEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "local")
     )
-    Set<Department> subscribedDepartments;
+    private Set<Department> subscribedDepartments;
 
     @OneToMany(mappedBy = "appointmentUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    Set<Appointment> appointmentsMade;
+    private Set<Appointment> appointmentsMade;
 }

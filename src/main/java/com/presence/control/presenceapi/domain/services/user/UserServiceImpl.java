@@ -1,5 +1,6 @@
 package com.presence.control.presenceapi.domain.services.user;
 
+import com.presence.control.presenceapi.commons.helper.ConversionMapper;
 import com.presence.control.presenceapi.data.domain.User;
 import com.presence.control.presenceapi.data.dto.UserDTO;
 import com.presence.control.presenceapi.domain.exception.UserAlreadyExistsException;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final ModelMapper modelMapper;
+    private final ConversionMapper conversionMapper;
     private final UserRepository userRepository;
 
     @Override
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
         User createdUser = userRepository.save(user);
 
-        return modelMapper.map(createdUser, UserDTO.class);
+        return conversionMapper.map(createdUser, UserDTO.class);
     }
 
     private boolean emailExists(User user) {

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public final class ConversionMapper {
+public class ConversionMapper {
 
     private ModelMapper modelMapper = new ModelMapper();
 

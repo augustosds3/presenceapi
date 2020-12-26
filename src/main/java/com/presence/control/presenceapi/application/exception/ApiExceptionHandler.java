@@ -21,12 +21,12 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
 
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity handleAllExceptions(Exception ex, HttpStatus status) {
+    public final ResponseEntity<Object> handleAllExceptions(Exception ex, HttpStatus status) {
         List<String> details = new ArrayList<>();
         details.add(ex.getLocalizedMessage());
         details.add(String.valueOf(status.value()));
         ErrorResponse error = new ErrorResponse("Server Error", details);
-        return new ResponseEntity(error, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Override
