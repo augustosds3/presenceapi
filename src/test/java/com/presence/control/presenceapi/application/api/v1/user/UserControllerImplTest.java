@@ -1,87 +1,70 @@
 package com.presence.control.presenceapi.application.api.v1.user;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.presence.control.presenceapi.commons.helper.ConversionMapper;
 import com.presence.control.presenceapi.data.domain.User;
 import com.presence.control.presenceapi.data.dto.UserDTO;
-import com.presence.control.presenceapi.domain.exception.UserAlreadyExistsException;
-import com.presence.control.presenceapi.domain.services.user.UserServiceImpl;
-import com.presence.control.presenceapi.infrastructure.repository.user.UserRepository;
-import com.sun.org.apache.xpath.internal.Arg;
-import org.junit.jupiter.api.BeforeEach;
+import com.presence.control.presenceapi.domain.services.user.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(MockitoExtension.class)
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(controllers = UserController.class)
 class UserControllerImplTest {
 
-    @Mock
-    private UserRepository userRepository;
+    @Autowired
+    private MockMvc mockMvc;
 
-    @Mock
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @MockBean
     private ConversionMapper conversionMapper;
 
-    @InjectMocks
-    private UserServiceImpl userService;
+    @MockBean
+    private UserService userService;
 
-    private User testUser;
+    @Test
+    void whenValidInputCreateUserAndReturn201() throws Exception {
+        UserDTO testUserDTO = getTestUserDTO();
+        given(conversionMapper.map(any(User.class), any())).willReturn(getTestUser());
+        given(userService.registerUser(any(User.class))).willReturn(testUserDTO);
 
-    private UserDTO testUserDto;
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user/v1/signup").contentType(MediaType.APPLICATION_JSON)
+        .content(objectMapper.writeValueAsString(testUserDTO)))
+                .andExpect(status().isCreated())
+        .andExpect(jsonPath("$.fullName").value("Augusto"))
+        ;
+    }
 
-    private ArgumentCaptor<User> userArgumentCaptor = ArgumentCaptor.forClass(User.class);
-
-    @BeforeEach
-    public void setUp(){
-        testUser = new User();
+    private User getTestUser(){
+        User testUser = new User();
         testUser.setFullName("Augusto");
         testUser.setEmail("augusto@sfs.com");
         testUser.setPassword("test");
 
-        testUserDto = new UserDTO();
+        return testUser;
+    }
+
+    private UserDTO getTestUserDTO(){
+        UserDTO testUserDto = new UserDTO();
         testUserDto.setFullName("Augusto");
         testUserDto.setEmail("augusto@sfs.com");
         testUserDto.setPassword("test");
-    }
 
-    @Test
-    public void shouldSaveUserSuccessfully(){
-        final User user = testUser;
-
-        given(userRepository.countByEmail(user.getEmail())).willReturn(0L);
-        given(conversionMapper.map(any(), any())).willReturn(testUserDto);
-        given(userRepository.save(user)).willAnswer(invocation -> invocation.getArgument(0));
-
-        UserDTO createdUser = userService.registerUser(user);
-
-        assertNotNull(createdUser);
-
-        verify(userRepository).save(userArgumentCaptor.capture());
-
-        User passedUser = userArgumentCaptor.getValue();
-        assertEquals(createdUser.getEmail(), passedUser.getEmail());
-        assertEquals(createdUser.getFullName(), passedUser.getFullName());
-        assertEquals(createdUser.getPassword(), passedUser.getPassword());
-    }
-
-    @Test
-    public void whenUserExistsShouldThrowUserAlreadyExistsException(){
-
-        given(userRepository.countByEmail(anyString())).willReturn(1L);
-
-        Exception exception = assertThrows(UserAlreadyExistsException.class, () -> userService.registerUser(testUser));
-
-        assertEquals(exception.getMessage(), "An account already exist with email address: " + testUser.getEmail());
-        verify(userRepository, never()).save(any(User.class));
+        return testUserDto;
     }
 
 }

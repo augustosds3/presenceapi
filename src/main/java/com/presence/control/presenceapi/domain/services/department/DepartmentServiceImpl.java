@@ -12,7 +12,6 @@ import com.presence.control.presenceapi.infrastructure.repository.department.Dep
 import com.presence.control.presenceapi.infrastructure.repository.local.LocalRepository;
 import com.presence.control.presenceapi.infrastructure.repository.user.UserRepository;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -62,7 +61,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
         userRepository.save(user);
 
-        return "User subscribed";
+        return "User Subscribed";
     }
 
     @Override

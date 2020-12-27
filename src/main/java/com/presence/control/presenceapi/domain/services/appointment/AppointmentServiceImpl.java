@@ -23,9 +23,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 
     @Override
     @Transactional
-    public List<AppointmentDTO> registerUserAppointments(List<Appointment> appointments) {
-
-        Long userId = appointments.get(0).getAppointmentUser().getId();
+    public List<AppointmentDTO> registerUserAppointments(List<Appointment> appointments, Long userId) {
 
         User user = userRepository.findById(userId).get();
 

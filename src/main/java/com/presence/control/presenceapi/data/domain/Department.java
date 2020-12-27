@@ -17,7 +17,7 @@ public class Department extends BaseEntity {
 
     private String departmentName;
 
-    private Long maxPeopleAllowed;
+    private Integer maxPeopleAllowed;
 
     @ManyToOne
     @JoinColumn(name = "department_id", referencedColumnName = "id")

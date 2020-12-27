@@ -71,25 +71,25 @@ public class InitialLoad implements CommandLineRunner {
 
         Department department1 = new Department();
         department1.setDepartmentName("Strikers");
-        department1.setMaxPeopleAllowed(10L);
+        department1.setMaxPeopleAllowed(10);
         department1.setDepartmentLocal(local1);
         department1.setOwnerUser(user1);
 
         Department department2 = new Department();
         department2.setDepartmentName("Warriors");
-        department2.setMaxPeopleAllowed(8L);
+        department2.setMaxPeopleAllowed(8);
         department2.setDepartmentLocal(local1);
         department2.setOwnerUser(user2);
 
         Department department3 = new Department();
         department3.setDepartmentName("Finances");
-        department3.setMaxPeopleAllowed(8L);
+        department3.setMaxPeopleAllowed(8);
         department3.setDepartmentLocal(local2);
         department3.setOwnerUser(user4);
 
         Department department4 = new Department();
         department4.setDepartmentName("Office");
-        department4.setMaxPeopleAllowed(5L);
+        department4.setMaxPeopleAllowed(5);
         department4.setDepartmentLocal(local3);
         department4.setOwnerUser(user3);
 

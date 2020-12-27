@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AppointmentService {
 
-    List<AppointmentDTO> registerUserAppointments(List<Appointment> appointments);
+    List<AppointmentDTO> registerUserAppointments(List<Appointment> appointments, Long userId);
 
     List<AppointmentDTO> findAllAppointments();
 

@@ -22,7 +22,7 @@ public interface AppointmentController {
             @ApiResponse(code = 201, message = "Appointments created"),
             @ApiResponse(code = 400, message = "Wrong parameters in the request message")
     })
-    ResponseEntity<Response> registerAppointments(@Valid @RequestBody List<AppointmentDTO> appointments);
+    ResponseEntity<Response> registerAppointments(@Valid @RequestBody List<AppointmentDTO> appointments, @PathVariable Long userId);
 
     @GetMapping(path = "/appointments")
     @ApiOperation(value = "Return a List of all registered Appointments")

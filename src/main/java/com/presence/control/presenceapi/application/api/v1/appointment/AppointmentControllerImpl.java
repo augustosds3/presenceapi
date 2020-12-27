@@ -26,9 +26,9 @@ public class AppointmentControllerImpl implements AppointmentController {
     private final ConversionMapper conversionMapper;
 
     @Override
-    public ResponseEntity<Response> registerAppointments(@Valid List<AppointmentDTO> appointments) {
+    public ResponseEntity<Response> registerAppointments(@Valid List<AppointmentDTO> appointments, Long userId) {
 
-        List<AppointmentDTO> createdAppointments = appointmentService.registerUserAppointments(conversionMapper.mapList(appointments, Appointment.class));
+        List<AppointmentDTO> createdAppointments = appointmentService.registerUserAppointments(conversionMapper.mapList(appointments, Appointment.class), userId);
 
         Response appointmentResponse = new Response();
         appointmentResponse.setMessage("Appointments Created");
