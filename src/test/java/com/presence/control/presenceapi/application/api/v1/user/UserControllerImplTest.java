@@ -17,7 +17,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -36,17 +35,16 @@ class UserControllerImplTest {
     @MockBean
     private UserService userService;
 
+
     @Test
-    void whenValidInputCreateUserAndReturn201() throws Exception {
+    public void whenValidInputCreateUserAndReturn201() throws Exception {
         UserDTO testUserDTO = getTestUserDTO();
         given(conversionMapper.map(any(User.class), any())).willReturn(getTestUser());
         given(userService.registerUser(any(User.class))).willReturn(testUserDTO);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/user/v1/signup").contentType(MediaType.APPLICATION_JSON)
         .content(objectMapper.writeValueAsString(testUserDTO)))
-                .andExpect(status().isCreated())
-        .andExpect(jsonPath("$.fullName").value("Augusto"))
-        ;
+                .andExpect(status().isCreated());
     }
 
     private User getTestUser(){

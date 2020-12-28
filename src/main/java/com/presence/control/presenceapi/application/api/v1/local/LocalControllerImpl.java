@@ -1,11 +1,11 @@
 package com.presence.control.presenceapi.application.api.v1.local;
 
 import com.presence.control.presenceapi.application.response.Response;
+import com.presence.control.presenceapi.commons.helper.ConversionMapper;
 import com.presence.control.presenceapi.data.domain.Local;
 import com.presence.control.presenceapi.data.dto.LocalDTO;
 import com.presence.control.presenceapi.domain.services.local.LocalService;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,12 +19,12 @@ public class LocalControllerImpl implements LocalController {
 
     private final LocalService localService;
 
-    private final ModelMapper modelMapper;
+    private final ConversionMapper conversionMapper;
 
     @Override
     public ResponseEntity<Response> createLocal(@Valid LocalDTO local) {
 
-        LocalDTO createdLocal = localService.createLocal(modelMapper.map(local, Local.class), local.getOwnerUserId());
+        LocalDTO createdLocal = localService.createLocal(conversionMapper.map(local, Local.class), local.getOwnerUserId());
 
         Response localResponse = new Response();
         localResponse.setMessage("Local Created");
