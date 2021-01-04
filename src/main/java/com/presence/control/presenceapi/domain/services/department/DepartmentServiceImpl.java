@@ -1,10 +1,10 @@
 package com.presence.control.presenceapi.domain.services.department;
 
 import com.presence.control.presenceapi.commons.helper.ConversionMapper;
-import com.presence.control.presenceapi.data.domain.Department;
-import com.presence.control.presenceapi.data.domain.Local;
-import com.presence.control.presenceapi.data.domain.User;
-import com.presence.control.presenceapi.data.dto.DepartmentDTO;
+import com.presence.control.presenceapi.domain.entity.Department;
+import com.presence.control.presenceapi.domain.entity.Local;
+import com.presence.control.presenceapi.domain.entity.User;
+import com.presence.control.presenceapi.application.dto.DepartmentDTO;
 import com.presence.control.presenceapi.domain.exception.DepartmentAlreadyExists;
 import com.presence.control.presenceapi.domain.exception.LocalNotFoundException;
 import com.presence.control.presenceapi.domain.exception.UserNotFoundException;

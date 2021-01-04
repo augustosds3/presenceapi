@@ -1,9 +1,9 @@
 package com.presence.control.presenceapi.domain.services.local;
 
 import com.presence.control.presenceapi.commons.helper.ConversionMapper;
-import com.presence.control.presenceapi.data.domain.Local;
-import com.presence.control.presenceapi.data.domain.User;
-import com.presence.control.presenceapi.data.dto.LocalDTO;
+import com.presence.control.presenceapi.domain.entity.Local;
+import com.presence.control.presenceapi.domain.entity.User;
+import com.presence.control.presenceapi.application.dto.LocalDTO;
 import com.presence.control.presenceapi.domain.exception.LocalAlreadyExistsException;
 import com.presence.control.presenceapi.infrastructure.repository.local.LocalRepository;
 import com.presence.control.presenceapi.infrastructure.repository.user.UserRepository;

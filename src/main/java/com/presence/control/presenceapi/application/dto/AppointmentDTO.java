@@ -1,4 +1,4 @@
-package com.presence.control.presenceapi.data.dto;
+package com.presence.control.presenceapi.application.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

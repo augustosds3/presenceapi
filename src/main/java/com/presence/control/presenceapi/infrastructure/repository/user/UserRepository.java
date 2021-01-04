@@ -1,6 +1,6 @@
 package com.presence.control.presenceapi.infrastructure.repository.user;
 
-import com.presence.control.presenceapi.data.domain.User;
+import com.presence.control.presenceapi.domain.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<User, Long> {

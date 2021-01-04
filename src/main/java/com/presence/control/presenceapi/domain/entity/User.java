@@ -1,4 +1,4 @@
-package com.presence.control.presenceapi.data.domain;
+package com.presence.control.presenceapi.domain.entity;
 
 import lombok.*;
 

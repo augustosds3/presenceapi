@@ -1,17 +1,16 @@
-package com.presence.control.presenceapi.data.dto;
+package com.presence.control.presenceapi.application.dto;
+
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class LocalDTO {
+public class UserDTO {
 
     @JsonProperty
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -19,11 +18,13 @@ public class LocalDTO {
 
     @JsonProperty(required = true)
     @NotNull
-    private Long ownerUserId;
+    private String fullName;
 
     @JsonProperty(required = true)
     @NotNull
-    private String localName;
+    private String email;
 
-
+    @JsonProperty(required = true)
+    @NotNull
+    private String password;
 }

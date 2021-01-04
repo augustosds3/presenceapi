@@ -1,6 +1,6 @@
 package com.presence.control.presenceapi.infrastructure.repository.department;
 
-import com.presence.control.presenceapi.data.domain.Department;
+import com.presence.control.presenceapi.domain.entity.Department;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.presence.control.presenceapi.infrastructure.repository.appointment;
 
-import com.presence.control.presenceapi.data.domain.Appointment;
+import com.presence.control.presenceapi.domain.entity.Appointment;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

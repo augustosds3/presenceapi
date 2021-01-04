@@ -1,4 +1,4 @@
-package com.presence.control.presenceapi.data.dto;
+package com.presence.control.presenceapi.application.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,24 +11,19 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class DepartmentDTO {
+public class LocalDTO {
 
     @JsonProperty
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Long id;
 
+    @JsonProperty(required = true)
     @NotNull
-    private String departmentName;
-
-    @NotNull
-    private Integer maxPeopleAllowed;
-
-    @NotNull
-    private Long departmentLocalId;
-
-    @JsonProperty
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Long ownerUserId;
+
+    @JsonProperty(required = true)
+    @NotNull
+    private String localName;
 
 
 }

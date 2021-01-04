@@ -1,8 +1,8 @@
 package com.presence.control.presenceapi.application.api.v1.department;
 
 import com.presence.control.presenceapi.application.response.Response;
-import com.presence.control.presenceapi.data.domain.Department;
-import com.presence.control.presenceapi.data.dto.DepartmentDTO;
+import com.presence.control.presenceapi.domain.entity.Department;
+import com.presence.control.presenceapi.application.dto.DepartmentDTO;
 import com.presence.control.presenceapi.domain.services.department.DepartmentService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;

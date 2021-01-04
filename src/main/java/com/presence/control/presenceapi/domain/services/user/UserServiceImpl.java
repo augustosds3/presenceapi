@@ -1,12 +1,11 @@
 package com.presence.control.presenceapi.domain.services.user;
 
 import com.presence.control.presenceapi.commons.helper.ConversionMapper;
-import com.presence.control.presenceapi.data.domain.User;
-import com.presence.control.presenceapi.data.dto.UserDTO;
+import com.presence.control.presenceapi.domain.entity.User;
+import com.presence.control.presenceapi.application.dto.UserDTO;
 import com.presence.control.presenceapi.domain.exception.UserAlreadyExistsException;
 import com.presence.control.presenceapi.infrastructure.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service

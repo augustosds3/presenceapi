@@ -1,4 +1,4 @@
-package com.presence.control.presenceapi.commons.mapper;
+package com.presence.control.presenceapi.commons.configuration;
 
 import org.modelmapper.*;
 import org.springframework.context.annotation.Bean;

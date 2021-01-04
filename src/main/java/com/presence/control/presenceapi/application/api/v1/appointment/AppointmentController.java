@@ -1,7 +1,7 @@
 package com.presence.control.presenceapi.application.api.v1.appointment;
 
 import com.presence.control.presenceapi.application.response.Response;
-import com.presence.control.presenceapi.data.dto.AppointmentDTO;
+import com.presence.control.presenceapi.application.dto.AppointmentDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

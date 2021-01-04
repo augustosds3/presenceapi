@@ -1,7 +1,7 @@
 package com.presence.control.presenceapi.domain.services.appointment;
 
-import com.presence.control.presenceapi.data.domain.Appointment;
-import com.presence.control.presenceapi.data.dto.AppointmentDTO;
+import com.presence.control.presenceapi.domain.entity.Appointment;
+import com.presence.control.presenceapi.application.dto.AppointmentDTO;
 
 import java.util.List;
 

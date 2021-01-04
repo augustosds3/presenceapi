@@ -1,9 +1,9 @@
 package com.presence.control.presenceapi.domain.services.appointment;
 
 import com.presence.control.presenceapi.commons.helper.ConversionMapper;
-import com.presence.control.presenceapi.data.domain.Appointment;
-import com.presence.control.presenceapi.data.domain.User;
-import com.presence.control.presenceapi.data.dto.AppointmentDTO;
+import com.presence.control.presenceapi.domain.entity.Appointment;
+import com.presence.control.presenceapi.domain.entity.User;
+import com.presence.control.presenceapi.application.dto.AppointmentDTO;
 import com.presence.control.presenceapi.infrastructure.repository.appointment.AppointmentRepository;
 import com.presence.control.presenceapi.infrastructure.repository.user.UserRepository;
 import lombok.AllArgsConstructor;

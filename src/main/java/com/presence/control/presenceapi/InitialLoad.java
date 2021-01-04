@@ -1,8 +1,8 @@
 package com.presence.control.presenceapi;
 
-import com.presence.control.presenceapi.data.domain.Department;
-import com.presence.control.presenceapi.data.domain.Local;
-import com.presence.control.presenceapi.data.domain.User;
+import com.presence.control.presenceapi.domain.entity.Department;
+import com.presence.control.presenceapi.domain.entity.Local;
+import com.presence.control.presenceapi.domain.entity.User;
 import com.presence.control.presenceapi.infrastructure.repository.department.DepartmentRepository;
 import com.presence.control.presenceapi.infrastructure.repository.local.LocalRepository;
 import com.presence.control.presenceapi.infrastructure.repository.user.UserRepository;

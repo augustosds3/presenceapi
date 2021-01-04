@@ -2,8 +2,8 @@ package com.presence.control.presenceapi.application.api.v1.local;
 
 import com.presence.control.presenceapi.application.response.Response;
 import com.presence.control.presenceapi.commons.helper.ConversionMapper;
-import com.presence.control.presenceapi.data.domain.Local;
-import com.presence.control.presenceapi.data.dto.LocalDTO;
+import com.presence.control.presenceapi.domain.entity.Local;
+import com.presence.control.presenceapi.application.dto.LocalDTO;
 import com.presence.control.presenceapi.domain.services.local.LocalService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

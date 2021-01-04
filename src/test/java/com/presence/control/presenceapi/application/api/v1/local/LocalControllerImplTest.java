@@ -2,9 +2,9 @@ package com.presence.control.presenceapi.application.api.v1.local;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.presence.control.presenceapi.commons.helper.ConversionMapper;
-import com.presence.control.presenceapi.data.domain.Local;
-import com.presence.control.presenceapi.data.domain.User;
-import com.presence.control.presenceapi.data.dto.LocalDTO;
+import com.presence.control.presenceapi.domain.entity.Local;
+import com.presence.control.presenceapi.domain.entity.User;
+import com.presence.control.presenceapi.application.dto.LocalDTO;
 import com.presence.control.presenceapi.domain.services.local.LocalService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,6 +15,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import java.util.Arrays;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -48,17 +50,26 @@ class LocalControllerImplTest {
                 .andExpect(status().isCreated());
     }
 
-  /*  @Test
+    @Test
     public void whenValidInputSubscribeUserThenReturn201() throws Exception{
         given(conversionMapper.map(any(LocalDTO.class), any())).willReturn(getTestLocal());
         given(localService.subscribeUserToLocal(anyLong(), anyLong())).willReturn("User Subscribed");
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/local/v1/subscribe-user")
         .param("localId", "1")
-                        .param("userID", "1")
+                        .param("userId", "1")
                 ).andExpect(status().isCreated());
 
-    }*/
+    }
+
+    @Test
+    public void whenUserIdShouldReturnAllUserLocals() throws Exception {
+        given(conversionMapper.map(any(LocalDTO.class), any())).willReturn(getTestLocal());
+        given(localService.findAllUserLocals(anyLong())).willReturn(Arrays.asList(getTestLocalDTO()));
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/local/v1/locals/{userId}", 1))
+                .andExpect(status().isOk());
+    }
 
 
     private Local getTestLocal(){
