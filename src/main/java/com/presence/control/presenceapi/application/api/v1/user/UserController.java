@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
-@RequestMapping(path = "/api/user/v1/")
+@RequestMapping(path = "/api/v1/user")
 @Api(value = "Presence Control User Operations API")
 public interface UserController {
 

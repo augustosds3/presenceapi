@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RequestMapping(path = "/api/local/v1")
+@RequestMapping(path = "/api/v1/local")
 @Api(value = "Presence Control Local Operations API")
 public interface LocalController {
 

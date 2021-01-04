@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RequestMapping(path = "/api/appointment/v1")
+@RequestMapping(path = "/api/v1/appointment")
 @Api(value = "Presence Control Appointment Operations API")
 public interface AppointmentController {
 

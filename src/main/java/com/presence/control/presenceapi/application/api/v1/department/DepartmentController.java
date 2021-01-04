@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RequestMapping(path = "/api/department/v1")
+@RequestMapping(path = "/api/v1/department")
 @Api(value = "Presence Control Department Operations API")
 public interface DepartmentController {
 
