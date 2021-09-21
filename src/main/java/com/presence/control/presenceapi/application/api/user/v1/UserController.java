@@ -1,4 +1,4 @@
-package com.presence.control.presenceapi.application.api.v1.user;
+package com.presence.control.presenceapi.application.api.user.v1;
 
 import com.presence.control.presenceapi.application.response.Response;
 import com.presence.control.presenceapi.application.dto.UserDTO;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
-@RequestMapping(path = "/api/v1/user")
+@RequestMapping(path = "/api/user/v1")
 @Api(value = "Presence Control User Operations API")
 public interface UserController {
 

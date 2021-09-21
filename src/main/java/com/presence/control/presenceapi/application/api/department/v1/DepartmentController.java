@@ -1,4 +1,4 @@
-package com.presence.control.presenceapi.application.api.v1.department;
+package com.presence.control.presenceapi.application.api.department.v1;
 
 import com.presence.control.presenceapi.application.response.Response;
 import com.presence.control.presenceapi.application.dto.DepartmentDTO;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RequestMapping(path = "/api/v1/department")
+@RequestMapping(path = "/api/department/v1")
 @Api(value = "Presence Control Department Operations API")
 public interface DepartmentController {
 

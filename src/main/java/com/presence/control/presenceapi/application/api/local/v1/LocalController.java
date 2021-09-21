@@ -1,4 +1,4 @@
-package com.presence.control.presenceapi.application.api.v1.local;
+package com.presence.control.presenceapi.application.api.local.v1;
 
 import com.presence.control.presenceapi.application.response.Response;
 import com.presence.control.presenceapi.application.dto.LocalDTO;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RequestMapping(path = "/api/v1/local")
+@RequestMapping(path = "/api/local/v1")
 @Api(value = "Presence Control Local Operations API")
 public interface LocalController {
 

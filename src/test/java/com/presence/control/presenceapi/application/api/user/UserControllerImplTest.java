@@ -1,6 +1,7 @@
-package com.presence.control.presenceapi.application.api.v1.user;
+package com.presence.control.presenceapi.application.api.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.presence.control.presenceapi.application.api.user.v1.UserController;
 import com.presence.control.presenceapi.commons.helper.ConversionMapper;
 import com.presence.control.presenceapi.domain.entity.User;
 import com.presence.control.presenceapi.application.dto.UserDTO;

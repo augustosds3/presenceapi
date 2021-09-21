@@ -1,4 +1,4 @@
-package com.presence.control.presenceapi.application.api.v1.appointment;
+package com.presence.control.presenceapi.application.api.appointment.v1;
 
 import com.presence.control.presenceapi.application.response.Response;
 import com.presence.control.presenceapi.commons.helper.ConversionMapper;

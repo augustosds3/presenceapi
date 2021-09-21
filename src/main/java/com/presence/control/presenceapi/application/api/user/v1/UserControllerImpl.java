@@ -1,4 +1,4 @@
-package com.presence.control.presenceapi.application.api.v1.user;
+package com.presence.control.presenceapi.application.api.user.v1;
 
 import com.presence.control.presenceapi.application.response.Response;
 import com.presence.control.presenceapi.commons.helper.ConversionMapper;

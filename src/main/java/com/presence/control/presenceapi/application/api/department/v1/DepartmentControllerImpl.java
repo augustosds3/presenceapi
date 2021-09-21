@@ -1,4 +1,4 @@
-package com.presence.control.presenceapi.application.api.v1.department;
+package com.presence.control.presenceapi.application.api.department.v1;
 
 import com.presence.control.presenceapi.application.response.Response;
 import com.presence.control.presenceapi.domain.entity.Department;

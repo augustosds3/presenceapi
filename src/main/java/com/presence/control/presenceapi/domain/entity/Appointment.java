@@ -18,11 +18,11 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class Appointment extends BaseEntity {
 
-    LocalDate appointmentDate;
+    private LocalDate appointmentDate;
 
-    LocalTime appointmentStartTime;
+    private LocalTime appointmentStartTime;
 
-    LocalTime appointmentEndTime;
+    private LocalTime appointmentEndTime;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")

@@ -1,6 +1,7 @@
-package com.presence.control.presenceapi.application.api.v1.local;
+package com.presence.control.presenceapi.application.api.local;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.presence.control.presenceapi.application.api.local.v1.LocalController;
 import com.presence.control.presenceapi.commons.helper.ConversionMapper;
 import com.presence.control.presenceapi.domain.entity.Local;
 import com.presence.control.presenceapi.domain.entity.User;

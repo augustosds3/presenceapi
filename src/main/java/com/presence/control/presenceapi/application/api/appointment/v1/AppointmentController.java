@@ -1,4 +1,4 @@
-package com.presence.control.presenceapi.application.api.v1.appointment;
+package com.presence.control.presenceapi.application.api.appointment.v1;
 
 import com.presence.control.presenceapi.application.response.Response;
 import com.presence.control.presenceapi.application.dto.AppointmentDTO;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RequestMapping(path = "/api/v1/appointment")
+@RequestMapping(path = "/api/appointment/v1")
 @Api(value = "Presence Control Appointment Operations API")
 public interface AppointmentController {
 
